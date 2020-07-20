@@ -27,6 +27,14 @@ cd spring-boot-docker-mysql-ngnix
 
 ~~~
 
+Test webservices using following:
+
+Note: Pass a "token" in header with value "tenet" for authorization.
+~~~
+localhost:80/app/get-db-details
+localhost:80/app/ping
+~~~
+
 Shell script will start mysql container and will wait until mysql container is ready. Once mysql container is ready it will build Spring Boot application and start a new app container to run it.
 
 To stop and kill all the running containers use:
