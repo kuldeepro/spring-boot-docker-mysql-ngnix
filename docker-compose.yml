@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  nginx:
+    container_name: tenet-nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - tenet-app
+
+  tenet-app:
+    restart: on-failure
+    build: ./
+    expose:
+      - "9092"
+    ports:
+      - 9092:9092
+    external_links:
+      - tenet-mysql
+
+networks:
+  default:
+    external:
+      name: tenet-network
